@@ -18,22 +18,17 @@
 #define __ELEMENT_BASE_TYPE_INTERFACE_H_
 
 #include <sstream>
-
-//TODO Jordi: Include Cereal from the right path
 #include "cereal/archives/binary.hpp"
 #include "cereal/types/polymorphic.hpp"
 
 
 class Element {
-
-public:
-
+ public:
     virtual void save(cereal::BinaryOutputArchive &oarchive) const = 0;
 
     virtual void load(cereal::BinaryInputArchive &iarchive)  = 0;
 
     virtual ~Element() {}
-
 };
 
 #endif
