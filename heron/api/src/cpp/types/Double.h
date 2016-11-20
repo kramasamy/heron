@@ -19,21 +19,17 @@
 
 #include <sstream>
 #include "Element.h"
-
-//TODO Jordi: Include Cereal from the right path
 #include "cereal/archives/binary.hpp"
 #include "cereal/types/polymorphic.hpp"
 
 
-//TODO Jordi: Should I create an Double.cpp ?
+// TODO(Jordi): Should I create an Double.cpp ?
 class Double : public Element {
-
     double _value;
-    
-public:
+ public:
     Double() {}
 
-    Double(double value) : _value(value) {}
+    explicit Double(double value) : _value(value) {}
 
     double getValue() {
         return _value;
@@ -46,9 +42,7 @@ public:
     void load(cereal::BinaryInputArchive &iarchive) {
         iarchive(_value);
     }
-
 };
-
 
 CEREAL_REGISTER_TYPE(Double);
 CEREAL_REGISTER_POLYMORPHIC_RELATION(Element, Double);

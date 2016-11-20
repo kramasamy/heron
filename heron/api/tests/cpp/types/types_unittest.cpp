@@ -18,9 +18,50 @@
 #include "gtest/gtest.h"
 #include "types/types.h"
 
+namespace heron {
+namespace api {
+
+class BasicTypesTest : public ::testing::Test {
+
+public:
+  BasicTypesTest() {}
+  ~BasicTypesTest() {}
+
+  void SetUp() { 
+    eInt.reset(new Int(15));
+    eDouble.reset(new Double(3.14159));
+    eString.reset(new String("Jordi"));
+  }
+
+  void TearDown() {/* The shared pointer will deallocate the memory */}
+
+ protected:
+  std::shared_ptr<Element> eInt;
+  std::shared_ptr<Element> eDouble;
+  std::shared_ptr<Element> eString; 
+
+};
+
+TEST_F(BasicTypesTest, testCastingTypes) {
+
+  auto myInt =
+    std::static_pointer_cast<Int>(eInt);
+  auto myDouble = 
+    std::static_pointer_cast<Double>(eDouble);
+  auto myString = 
+    std::static_pointer_cast<String>(eString);
+
+  EXPECT_EQ(myInt->getValue(), 15);
+  EXPECT_EQ(myDouble->getValue(), 3.14159);
+  EXPECT_EQ((myString->getValue()), "Jordi");
+}
+
+} // api
+} // heron
+
 
 int main(int argc, char **argv) {
-  heron::common::Initialize(argv[0]);
+  //heron::api::Initialize(argv[0]);
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
