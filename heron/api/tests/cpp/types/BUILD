@@ -4,7 +4,7 @@ cc_test(
     name = "types_unittest",
     srcs = ["types_unittest.cpp"],
     deps = [
-        "//heron/api/src/cpp/types/types:types-cxx",
+        "//heron/api/src/cpp/types:types-cxx",
         "//third_party/gtest:gtest-cxx",
     ],
     copts = [
