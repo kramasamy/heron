@@ -19,25 +19,21 @@
 
 #include <sstream>
 #include "Element.h"
-
-//TODO Jordi: Include Cereal from the right path
 #include "cereal/archives/binary.hpp"
 #include "cereal/types/polymorphic.hpp"
 
 
-//TODO Jordi: Should I create an Int.cpp ?
+// TODO(Jordi): Should I create an Int.cpp ?
 class Int : public Element {
-
     int _value;
-    
-public:
+ public:
     Int() {}
 
-    Int(int value) : _value(value) {}
+    explicit Int(int value) : _value(value) {}
 
     int getValue() {
         return _value;
-    } 
+    }
 
     void save(cereal::BinaryOutputArchive &oarchive) const {
         oarchive(_value);
@@ -46,11 +42,9 @@ public:
     void load(cereal::BinaryInputArchive &iarchive) {
         iarchive(_value);
     }
-
 };
 
 CEREAL_REGISTER_TYPE(Int);
 CEREAL_REGISTER_POLYMORPHIC_RELATION(Element, Int);
-
 
 #endif

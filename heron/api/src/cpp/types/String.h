@@ -18,26 +18,22 @@
 #define __STRING_HERON_TYPE_H_
 
 #include <sstream>
+#include <string>
 #include "Element.h"
-
-//TODO Jordi: Include Cereal from the right path
 #include "cereal/archives/binary.hpp"
 #include "cereal/types/polymorphic.hpp"
 
-//TODO Jordi: Should I create an String.cpp ?
+// TODO(Jordi): Should I create an String.cpp ?
 class String : public Element {
-
     std::string _value;
-
-public:
-
+ public:
     String() {}
 
-    String(std::string value) : _value(value) {}
+    explicit String(std::string value) : _value(value) {}
 
     std::string getValue() {
         return _value;
-    } 
+    }
 
     void save(cereal::BinaryOutputArchive &oarchive) const {
         oarchive(_value);
@@ -46,7 +42,6 @@ public:
     void load(cereal::BinaryInputArchive &iarchive) {
         iarchive(_value);
     }
-
 };
 
 CEREAL_REGISTER_TYPE(String);
