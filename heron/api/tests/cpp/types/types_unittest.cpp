@@ -22,12 +22,11 @@ namespace heron {
 namespace api {
 
 class BasicTypesTest : public ::testing::Test {
-
-public:
+ public:
   BasicTypesTest() {}
   ~BasicTypesTest() {}
 
-  void SetUp() { 
+  void SetUp() {
     eInt.reset(new Int(15));
     eDouble.reset(new Double(3.14159));
     eString.reset(new String("Jordi"));
@@ -38,17 +37,15 @@ public:
  protected:
   std::shared_ptr<Element> eInt;
   std::shared_ptr<Element> eDouble;
-  std::shared_ptr<Element> eString; 
-
+  std::shared_ptr<Element> eString;
 };
 
 TEST_F(BasicTypesTest, testCastingTypes) {
-
   auto myInt =
     std::static_pointer_cast<Int>(eInt);
-  auto myDouble = 
+  auto myDouble =
     std::static_pointer_cast<Double>(eDouble);
-  auto myString = 
+  auto myString =
     std::static_pointer_cast<String>(eString);
 
   EXPECT_EQ(myInt->getValue(), 15);
@@ -56,12 +53,11 @@ TEST_F(BasicTypesTest, testCastingTypes) {
   EXPECT_EQ((myString->getValue()), "Jordi");
 }
 
-} // api
-} // heron
-
+}  // namespace api
+}  // namespace heron
 
 int main(int argc, char **argv) {
-  //heron::api::Initialize(argv[0]);
+  // heron::api::Initialize(argv[0]);
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
