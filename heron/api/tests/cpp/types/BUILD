@@ -6,6 +6,7 @@ cc_test(
     deps = [
         "//heron/api/src/cpp/types:types-cxx",
         "//third_party/gtest:gtest-cxx",
+        "//third_party/cereal:cereal-cxx",
     ],
     copts = [
         "-Iheron/api/src/cpp",

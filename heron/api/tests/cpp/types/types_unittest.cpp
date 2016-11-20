@@ -28,9 +28,9 @@ public:
   ~BasicTypesTest() {}
 
   void SetUp() { 
-    std::make_shared<Element>(new Int(15));
-    std::make_shared<Element>(new Double(3.14159));
-    std::make_shared<Element>(new String("Jordi"));
+    eInt.reset(new Int(15));
+    eDouble.reset(new Double(3.14159));
+    eString.reset(new String("Jordi"));
   }
 
   void TearDown() {/* The shared pointer will deallocate the memory */}
@@ -52,8 +52,8 @@ TEST_F(BasicTypesTest, testCastingTypes) {
     std::static_pointer_cast<String>(eString);
 
   EXPECT_EQ(myInt->getValue(), 15);
-  EXPECT_DOUBLE_EQ(myDouble->getValue(), 3.14159);
-  EXPECT_STREQ(myString->getValue(), "Jordi");
+  EXPECT_EQ(myDouble->getValue(), 3.14159);
+  EXPECT_EQ((myString->getValue()), "Jordi");
 }
 
 } // api
@@ -61,7 +61,7 @@ TEST_F(BasicTypesTest, testCastingTypes) {
 
 
 int main(int argc, char **argv) {
-  heron::common::Initialize(argv[0]);
+  //heron::api::Initialize(argv[0]);
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
