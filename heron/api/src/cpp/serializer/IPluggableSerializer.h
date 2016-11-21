@@ -18,24 +18,19 @@
 #define __IPLUGGABLE_SERIALIZER_H_
 
 #include <map>
+#include <string>
 #include <sstream>
 #include <iostream>
 
-#include "../types/types.h"
+#include "types/types.h"
 
 class IPluggableSerializer {
-
-public:
-
-    virtual void serialize(std::stringstream &ss, 
+ public:
+    virtual void serialize(std::stringstream &ss,
        std::map<std::string, std::shared_ptr<Element> > &tuple) = 0;
 
-    virtual void deserialize(std::stringstream &ss, 
+    virtual void deserialize(std::stringstream &ss,
         std::map<std::string, std::shared_ptr<Element> > &tuple) = 0;
-
 };
 
 #endif
-
-
-
