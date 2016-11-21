@@ -15,3 +15,5 @@
  */
 
 #include "Fields.h"
+
+// TODO(Jordi): Implement this class

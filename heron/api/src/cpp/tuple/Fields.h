@@ -20,7 +20,7 @@
 #include<unordered_map>
 
 #include "Tuple.h"
-#include "../types/types.h"
+#include "types/types.h"
 
 class Fields {
  public:
