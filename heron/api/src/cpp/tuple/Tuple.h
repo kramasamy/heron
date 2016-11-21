@@ -17,27 +17,26 @@
 #ifndef __HERON_TUPLE_H_
 #define __HERON_TUPLE_H_
 
+#include <string>
+#include <map>
 #include <sstream>
-#include "../types/types.h"
-#include "../serializer/IPluggableSerializer.h"
+#include "types/types.h"
+#include "serializer/IPluggableSerializer.h"
 
 class Tuple {
-    
-    std::map<std::string, std::shared_ptr<Element> > elements;
+ public:
+  Tuple() {}
 
-public:
+  std::shared_ptr<Element>  Get(std::string name);
 
-    Tuple() {}
+  void Set(std::string name, std::shared_ptr<Element> e);
 
-    std::shared_ptr<Element>  Get(std::string name);
-    
-    void Set(std::string name, std::shared_ptr<Element> e);
+  void serialize(IPluggableSerializer *serializer, std::stringstream &ss);
 
-    void serialize(IPluggableSerializer *serializer, std::stringstream &ss);
+  void deserialize(IPluggableSerializer *serializer, std::stringstream &ss);
 
-    void deserialize(IPluggableSerializer *serializer, std::stringstream &ss);
-
+ private:
+  std::map<std::string, std::shared_ptr<Element> > elements;
 };
-
 
 #endif

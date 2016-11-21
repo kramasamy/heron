@@ -13,22 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+#include <string>
 #include "Tuple.h"
 
 
 std::shared_ptr<Element> Tuple::Get(std::string name) {
-    return elements[name];
+  return elements[name];
 }
 
 void Tuple::Set(std::string name, std::shared_ptr<Element> e) {
-    elements[name] = e;
+  elements[name] = e;
 }
 
 void Tuple::serialize(IPluggableSerializer *Serializer, std::stringstream &ss) {
-    Serializer->serialize(ss, elements);
+  Serializer->serialize(ss, elements);
 }
 
 void Tuple::deserialize(IPluggableSerializer *Serializer, std::stringstream &ss) {
-    Serializer->deserialize(ss, elements);
+  Serializer->deserialize(ss, elements);
 }
