@@ -62,6 +62,7 @@ TEST_F(BasicTupleTest, testCastingTypes) {
 }  // namespace api
 }  // namespace heron
 
+// TODO(Jordi): Add test for Fields.h
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
