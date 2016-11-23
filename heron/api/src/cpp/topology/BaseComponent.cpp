@@ -20,10 +20,13 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "BaseComponent.h"
 #include <unordered_map>
 #include <string>
+
+#include "BaseComponent.h"
+
 std::unordered_map<std::string, std::string> BaseComponent::getComponentConfiguration() {
+    // TODO(Jordi): What is this used for? it is broken
     std::unordered_map<std::string, std::string> map;
     return map;
 }

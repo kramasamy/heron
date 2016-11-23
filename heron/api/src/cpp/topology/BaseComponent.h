@@ -23,7 +23,10 @@
 #include "IComponent.h"
 #include <unordered_map>
 #include <string>
-class BaseComponent:public IComponent {
+class BaseComponent : public IComponent {
  public:
     std::unordered_map<std::string, std::string> getComponentConfiguration();
+    
+ private:
+  int64_t serialVersionUID = 4922360537045442614L;
 };
