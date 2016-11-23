@@ -21,30 +21,25 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef __ICOMPONENT_H_
-#define __ICOMPONENT_H_
+#ifndef __OUTPUT_FIELDS_DECLARER_H_
+#define __OUTPUT_FIELDS_DECLARER_H_
 
-#include <unordered_map>
 #include <string>
 
-#include "OutputFieldsDeclarer.h"
+#include "tuple/Fields.h"
 
-/**
- * Common methods for all possible components in a topology. This interface is used
- * when defining topologies using the Java API.
- */
-class IComponent {
+class OutputFieldsDeclarer {
  public:
   /**
-   * Declare the output schema for all the streams of this topology.
-   *
-   * @param declarer this is used to declare output stream ids, output fields, and whether or not each output stream is a direct stream
+   * Uses default stream id.
    */
-  virtual void declareOutputFields(OutputFieldsDeclarer declarer) = 0;
+  void declare(Fields fields);
 
-  // TODO(vidit-bhatia) : can we change the map with generic type
-  // TODO(Jordi): I do not know what is this for, any clue?
-  virtual std::unordered_map<std::string, std::string> getComponentConfiguration() = 0;
+  void declare(bool direct, Fields fields);
+
+  void declareStream(std::string streamId, Fields fields);
+
+  void declareStream(std::string streamId, bool direct, Fields fields);
 };
 
-#endif 
+#endif
