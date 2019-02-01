@@ -19,7 +19,6 @@ workspace(name = "org_apache_heron")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
-
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar")
 
 http_archive(
@@ -29,15 +28,8 @@ http_archive(
     url = "https://github.com/benley/bazel_rules_pex/archive/e2746c5c4ed70f7a56b724eec733a3fb32239b77.zip",
 )
 
-rules_scala_version = "a89d44f7ef67d93dedfc9888630f48d7723516f7"  # update this as needed
-
-load("@io_bazel_rules_pex//pex:pex_rules.bzl", "pex_repositories")
-
-
 # versions shared across artifacts that should be upgraded together
 aws_version = "1.11.58"
-
-rules_scala_version = "a89d44f7ef67d93dedfc9888630f48d7723516f7"  # update this as needed
 
 curator_version = "2.9.0"
 
@@ -527,21 +519,6 @@ maven_jar(
 maven_jar(
     name = "org_roaringbitmap",
     artifact = "org.roaringbitmap:RoaringBitmap:0.6.51",
-)
-
-maven_jar(
-  name = "tech_tablesaw",
-  artifact = "tech.tablesaw:tablesaw-core:0.11.4"
-)
-
-maven_jar(
-  name = "it_unimi_dsi_fastutil",
-  artifact = "it.unimi.dsi:fastutil:8.1.1"
-)
-
-maven_jar(
-  name = "org_roaringbitmap",
-  artifact = "org.roaringbitmap:RoaringBitmap:0.6.51"
 )
 
 # Google Cloud
@@ -1050,35 +1027,13 @@ http_archive(
 # for docker image building
 http_archive(
     name = "io_bazel_rules_docker",
-    strip_prefix = "rules_docker-0.6.0",
-    urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.6.0.tar.gz"],
-)
-
-# Download the rules_docker repository at release v0.7.0
-http_archive(
-    name = "io_bazel_rules_docker",
     sha256 = "aed1c249d4ec8f703edddf35cbe9dfaca0b5f5ea6e4cd9e83e99f3b0d1136c3d",
     strip_prefix = "rules_docker-0.7.0",
     urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.7.0.tar.gz"],
 )
 
-http_archive(
-    name = "io_bazel_rules_scala",
-    strip_prefix = "rules_scala-%s" % rules_scala_version,
-    type = "zip",
-    url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
-)
-
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-
-# register default scala toolchain
-load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-
-scala_register_toolchains()
-
 load(
-    "@io_bazel_rules_docker//container:container.bzl",
-    "container_pull",
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
     container_repositories = "repositories",
 )
 container_repositories()
@@ -1113,19 +1068,7 @@ http_archive(
 )
 
 # scala integration
-rules_scala_version = "1354d935a74395b3f0870dd90a04e0376fe22587"  # update this as needed
-
-http_archive(
-    name = "io_bazel_rules_scala",
-    strip_prefix = "rules_scala-%s" % rules_scala_version,
-    type = "zip",
-    url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
-    build_file = "//third_party/nomad:nomad.BUILD",
-    sha256 = "b3b78dccbdbd54ddc7a5ffdad29bce2d745cac93ea9e45f94e078f57b756f511",
-)
-
-# scala integration
-rules_scala_version="1354d935a74395b3f0870dd90a04e0376fe22587" # update this as needed
+rules_scala_version = "a89d44f7ef67d93dedfc9888630f48d7723516f7"  # update this as needed
 
 http_archive(
     name = "io_bazel_rules_scala",
@@ -1135,9 +1078,7 @@ http_archive(
 )
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-
 scala_repositories()
 
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-
 scala_register_toolchains()

@@ -336,7 +336,7 @@ pex_attrs = {
 
     # Used by pex_binary and pex_*test, not pex_library:
     "_pexbuilder": attr.label(
-        default = Label("//pex:pex_wrapper"),
+        default = Label("//tools/rules/pex:pex_wrapper"),
         executable = True,
         cfg = "host",
     ),
